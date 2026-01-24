@@ -30,7 +30,30 @@ public class ConnectJDBC {
 	                System.out.println("Database connected successfully!");
 	            }
 	            
-	          
+	            
+	            String query = "SELECT * FROM customers";
+	            
+	            // Statement 
+	            Statement stmt = con.createStatement();
+	            ResultSet rs = stmt.executeQuery(query);
+	            
+	            while(rs.next()) {
+	            	
+	            	System.out.println(rs.getInt("customer_id") + " "
+	            			+ rs.getString("name")+ " " 
+	            			+ rs.getString("city"));
+	            }
+	            
+	            String insertQuery = "INSERT INTO customers (customer_id,name,city) VALUES (1007, 'joy', 'Pune')";
+	            
+	            //boolean b = stmt.execute(insertQuery);
+	            
+	            int res = stmt.executeUpdate(insertQuery);
+	            
+	            System.out.println(res);
+	            
+	            
+
 
 	        } catch (ClassNotFoundException e) {
 	            System.out.println("MySQL Driver not found");
